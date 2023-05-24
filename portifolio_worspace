@@ -1,0 +1,709 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2023-05-24T00:17:07.542Z",
+  "__export_source": "insomnia.desktop.app:v2023.2.2",
+  "resources": [
+    {
+      "_id": "req_c71e71f92a1545df9eb7f1f2db7cc4c8",
+      "parentId": "fld_96635e2ed3ed4c889c16366ce91e2812",
+      "modified": 1684873026870,
+      "created": 1684610331943,
+      "url": "{{ _.baseUrl }}/login ",
+      "name": "/login",
+      "description": "### Rota para geração de um token de acesso com expiração de 24h.\n\nDeve ser enviado pelo body, no formato json, os campos:\n- **email**: string\n- **senha**: string\n\nCaso de sucesso:\n- 200 SUCCES\n- Body:\n\n\t```json\n\t{\n\t\t\"token\": \"Token\"\n\t}\n\t``` \nCasos de falha:\n- Status da falha\n- Body:\n\t\n\t```json\n\t{\n\t\t\"error\": \"Mensagem de erro\"\n\t}\n\t``` ",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"email\":\"mail@mail.com\",\n\t\"senha\": \"123456\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1682711308032,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_96635e2ed3ed4c889c16366ce91e2812",
+      "parentId": "wrk_e1bea2f5ac074b168c1cbdd2c1b9dd9f",
+      "modified": 1684786583437,
+      "created": 1684786583437,
+      "name": "Login",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1684786583437,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_e1bea2f5ac074b168c1cbdd2c1b9dd9f",
+      "parentId": null,
+      "modified": 1684887413225,
+      "created": 1684610247484,
+      "name": "portifolio_api.yaml",
+      "description": "## API para gerenciamento de portifólio fotográfico",
+      "scope": "design",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_2fe65ff9329e4884a9d561d689d89382",
+      "parentId": "fld_81aa1aeed64f4dc8b5068c95013ca2c1",
+      "modified": 1684882853156,
+      "created": 1684785874569,
+      "url": "{{ _.baseUrl }}/categorias",
+      "name": "/categorias",
+      "description": "### Rota para criação de uma nova categoria.\n\nRota **autenticada**, necessita do envio de um **Bearer Token** gerado no **login**.\n\nDeve ser enviado pelo **body**, no formato **json**, os **campos**:\n- **nome**: string\n\n**Caso de sucesso:**\n- 201 CREATED\n- Body:\n\t\n\t```json\n\t{\n\t\t\"categoria\": \"people\",\n\t\t\"_id\": \"646d083f8638d3e98d49a6e4\"\n\t}\n\t``` \n**Casos de falha:**\n- Status da falha\n- Body\n\t\n\t```json\n\t{\n\t\t\"error\": \"Mensagem de erro\"\n\t}\n\t``` ",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"categoria\": \"people\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "Token"
+      },
+      "metaSortKey": -1681122762958.8203,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_81aa1aeed64f4dc8b5068c95013ca2c1",
+      "parentId": "wrk_e1bea2f5ac074b168c1cbdd2c1b9dd9f",
+      "modified": 1684870265062,
+      "created": 1684785874561,
+      "name": "Categorias",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1683490509475.875,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_e0b4681137b0481abe86a9892f6fff14",
+      "parentId": "fld_81aa1aeed64f4dc8b5068c95013ca2c1",
+      "modified": 1684872850254,
+      "created": 1684785874566,
+      "url": "{{ _.baseUrl }}/categorias",
+      "name": "/categorias",
+      "description": "### Rota para listagem de todas as categorias cadastradas.\n\nRota **autenticada**, necessita do envio de um **Bearer Token** gerado no **login**.\n\nNão há necessidade de um body de envio.\n\n**Caso de sucesso:**\n- 200 SUCCES\n- Body:\n\t\n\t```json\n\t[\n\t\t{\n\t\t\t\"categoria\": \"people\",\n\t\t\t\"_id\": \"646d083f8638d3e98d49a6e4\"\n\t\t}\n\t]\n\t``` \n**Casos de falha:**\n- Status da falha\n- Body\n\t\n\t```json\n\t{\n\t\t\"error\": \"Mensagem de erro\"\n\t}\n\t``` ",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "Token"
+      },
+      "metaSortKey": -1680678217101.2383,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_4e2eadb8640e4084abbd5b33358478aa",
+      "parentId": "fld_81aa1aeed64f4dc8b5068c95013ca2c1",
+      "modified": 1684872874711,
+      "created": 1684785874573,
+      "url": "{{ _.baseUrl }}/categorias/:id_categoria",
+      "name": "/categorias/:id_categoria",
+      "description": "### Rota para listagem de uma categoria a partir do seu ID.\n\nRota **autenticada**, necessita do envio de um **Bearer Token** gerado no **login**.\n\nNão há necessidade de um body de envio.\n\nDeve ser enviado o **ID da categoria** por **parâmetro de url**.\n\n**Caso de sucesso:**\n- 200 SUCCES\n- Body:\n\t\n\t```json\n\t{\n\t\t\"categoria\": \"people\",\n\t\t\"_id\": \"646d083f8638d3e98d49a6e4\"\n\t}\n\t``` \n**Casos de falha:**\n- Status da falha\n- Body\n\t\n\t```json\n\t{\n\t\t\"error\": \"Mensagem de erro\"\n\t}\n\t``` ",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "Token"
+      },
+      "metaSortKey": -1680233671243.6562,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_986ee3705ba543a4923916a7242fdfd0",
+      "parentId": "fld_81aa1aeed64f4dc8b5068c95013ca2c1",
+      "modified": 1684872861792,
+      "created": 1684785874571,
+      "url": "{{ _.baseUrl }}/categorias/id_categoria",
+      "name": "/categorias/:id_categoria",
+      "description": "### Rota para atualização de uma categoria a partir do seu ID.\n\nRota **autenticada**, necessita do envio de um **Bearer Token** gerado no **login**.\n\nDeve ser enviado pelo **body**, no formato **json**, os **campos opicionais**:\n- **nome**: string\n\nDeve ser enviado o **ID da categoria** por **parâmetro de url**.\n\n**Caso de sucesso:**\n- 200 SUCCES\n- Body:\n\t\n\t```json\n\t{\n\t\t\"categoria\": \"people\",\n\t\t\"_id\": \"646d083f8638d3e98d49a6e4\"\n\t}\n\t``` \n**Casos de falha:**\n- Status da falha\n- Body\n\t\n\t```json\n\t{\n\t\t\"error\": \"Mensagem de erro\"\n\t}\n\t``` ",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"categoria\": \"people\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "Token"
+      },
+      "metaSortKey": -1677862760003.2188,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_9cfa5ffce04449f984f89650a78170b2",
+      "parentId": "fld_81aa1aeed64f4dc8b5068c95013ca2c1",
+      "modified": 1684872865994,
+      "created": 1684785874575,
+      "url": "{{ _.baseUrl }}/categorias/id_categoria",
+      "name": "/categorias/:id_categoria",
+      "description": "### Rota para deleção de uma categoria a partir do seu ID.\n\nRota **autenticada**, necessita do envio de um **Bearer Token** gerado no **login**.\n\nNão há necessidade de um body de envio.\n\nDeve ser enviado o **ID da categoria** por **parâmetro de url**.\n\n**Caso de sucesso:**\n- 204 SUCCES\n- Body: vazio\n\n**Casos de falha:**\n- Status da falha\n- Body\n\t\n\t```json\n\t{\n\t\t\"error\": \"Mensagem de erro\"\n\t}\n\t``` ",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "Token"
+      },
+      "metaSortKey": -1677270032193.1094,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_51996cab785d4819afd8a7bd3a48c8f3",
+      "parentId": "fld_9c889125a0664fb98ce9015222eb5e34",
+      "modified": 1684882982901,
+      "created": 1684785358071,
+      "url": "{{ _.baseUrl }}/fotos",
+      "name": "/fotos",
+      "description": "### Rota para criação de uma nova foto.\n\nRota **autenticada**, necessita do envio de um **Bearer Token** gerado no **login**.\n\nDeve ser enviado pelo **body**, no formato **json**, os **campos**:\n- **link**: string;\n- **descricao**: string;\n- **categoria**: string;\n\n**Caso de sucesso:**\n- 201 CREATED\n- Body:\n\t\n\t```json\n\t{\n\t\t\"link\": \"https://media.istockphoto.com/id/1325578537\",\n\t\t\"descricao\": \"uma foto bem bacana\",\n\t\t\"categoria\": \"people\",\n\t\t\"_id\": \"646d082d8638d3e98d49a6dd\"\n\t}\n\t``` \n**Casos de falha:**\n- Status da falha\n- Body\n\t\n\t```json\n\t{\n\t\t\"error\": \"Mensagem de erro\"\n\t}\n\t``` ",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"link\": \"https://media.istockphoto.com/id/1325578537\",\n\t\"descricao\": \"uma foto bem bacana\",\n\t\"categoria\": \"people\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "Token"
+      },
+      "metaSortKey": -1680826399053.7656,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_9c889125a0664fb98ce9015222eb5e34",
+      "parentId": "wrk_e1bea2f5ac074b168c1cbdd2c1b9dd9f",
+      "modified": 1684785858373,
+      "created": 1684778797901,
+      "name": "Fotos",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1682194435514.75,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_3b64a170a59d4398adeb471803d4ac23",
+      "parentId": "fld_9c889125a0664fb98ce9015222eb5e34",
+      "modified": 1684883186468,
+      "created": 1684611647840,
+      "url": "{{ _.baseUrl }}/fotos",
+      "name": "/fotos",
+      "description": "### Rota para listagem de todas as fotos cadastradas.\n\nRota **autenticada**, necessita do envio de um **Bearer Token** gerado no **login**.\n\nNão há necessidade de um body de envio.\n\n**Caso de sucesso:**\n- 200 SUCCES\n- Body:\n\t\n\t```json\n\t[\n\t\t{\n\t\t\t\"link\": \"https://media.istockphoto.com/id/1325578537\",\n\t\t\t\"descricao\": \"uma foto bem bacana\",\n\t\t\t\"categoria\": \"people\",\n\t\t\t\"_id\": \"646d082d8638d3e98d49a6dd\"\n\t\t}\n\t]\n\t``` \n**Casos de falha:**\n- Status da falha\n- Body\n\t\n\t```json\n\t{\n\t\t\"error\": \"Mensagem de erro\"\n\t}\n\t``` ",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "Token"
+      },
+      "metaSortKey": -1680530035148.711,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_1e29e488afe04354afb35fac6e9dfece",
+      "parentId": "fld_9c889125a0664fb98ce9015222eb5e34",
+      "modified": 1684883690053,
+      "created": 1684785689452,
+      "url": "{{ _.baseUrl }}/fotos/:id_foto",
+      "name": "/fotos/:id_foto",
+      "description": "### Rota para listagem de uma foto a partir do seu ID.\n\nRota **autenticada**, necessita do envio de um **Bearer Token** gerado no **login**.\n\nNão há necessidade de um body de envio.\n\nDeve ser enviado o **ID da foto** por **parâmetro de url**.\n\n**Caso de sucesso:**\n- 200 SUCCES\n- Body:\n\t\n\t```json\n\t{\n\t\t\"link\": \"https://media.istockphoto.com/id/1325578537\",\n\t\t\"descricao\": \"uma foto bem bacana\",\n\t\t\"categoria\": \"people\",\n\t\t\"_id\": \"646d082d8638d3e98d49a6dd\"\n\t}\n\t``` \n**Casos de falha:**\n- Status da falha\n- Body\n\t\n\t```json\n\t{\n\t\t\"error\": \"Mensagem de erro\"\n\t}\n\t``` ",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "Token"
+      },
+      "metaSortKey": -1680233671243.6562,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_36abf60345f445a7a0fbb90c90f6896b",
+      "parentId": "fld_9c889125a0664fb98ce9015222eb5e34",
+      "modified": 1684883739655,
+      "created": 1684785661477,
+      "url": "{{ _.baseUrl }}/fotos/:id_foto",
+      "name": "/fotos/:id_foto",
+      "description": "### Rota para atualização de uma foto a partir do seu ID.\n\nRota **autenticada**, necessita do envio de um **Bearer Token** gerado no **login**.\n\nDeve ser enviado pelo **body**, no formato **json**, os **campos opicionais**:\n- **link**: string;\n- **descricao**: string;\n- **categoria**: string;\n\nDeve ser enviado o **ID da foto** por **parâmetro de url**.\n\n**Caso de sucesso:**\n- 200 SUCCES\n- Body:\n\t\n\t```json\n\t{\n\t\t\"link\": \"https://media.istockphoto.com/id/1325578537\",\n\t\t\"descricao\": \"uma foto bem bacana e atualizada\",\n\t\t\"categoria\": \"people\",\n\t\t\"_id\": \"646d082d8638d3e98d49a6dd\"\n\t}\n\t``` \n**Casos de falha:**\n- Status da falha\n- Body\n\t\n\t```json\n\t{\n\t\t\"error\": \"Mensagem de erro\"\n\t}\n\t``` ",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"link\": \"https://media.istockphoto.com/id/1325578537\",\n\t\"descricao\": \"uma foto bem bacana e atualizada\",\n\t\"categoria\": \"people\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "Token"
+      },
+      "metaSortKey": -1677862760003.2188,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_06d9458993b942c1a1d96977849e2405",
+      "parentId": "fld_9c889125a0664fb98ce9015222eb5e34",
+      "modified": 1684883701786,
+      "created": 1684785777545,
+      "url": "{{ _.baseUrl }}/fotos/:id_foto",
+      "name": "/fotos/:id_foto",
+      "description": "### Rota para deleção de uma foto a partir do seu ID.\n\nRota **autenticada**, necessita do envio de um **Bearer Token** gerado no **login**.\n\nNão há necessidade de um body de envio.\n\nDeve ser enviado o **ID da foto** por **parâmetro de url**.\n\n**Caso de sucesso:**\n- 204 SUCCES\n- Body: vazio\n\n**Casos de falha:**\n- Status da falha\n- Body\n\t\n\t```json\n\t{\n\t\t\"error\": \"Mensagem de erro\"\n\t}\n\t``` ",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "Token"
+      },
+      "metaSortKey": -1677270032193.1094,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_f3428cd94c014d6c909e1117dfd26919",
+      "parentId": "fld_003fce34f4f046e2a7a3a4ff9b9c66ec",
+      "modified": 1684883856051,
+      "created": 1684786043049,
+      "url": "{{ _.baseUrl }}/midias",
+      "name": "/midias",
+      "description": "### Rota para criação de uma nova midia/rede social.\n\nRota **autenticada**, necessita do envio de um **Bearer Token** gerado no **login**.\n\nDeve ser enviado pelo **body**, no formato **json**, os **campos**:\n- **nome**: string;\n- **usuario**: string;\n- **link**: string;\n\n**Caso de sucesso:**\n- 201 CREATED\n- Body:\n\t\n\t```json\n\t{\n\t\t\"nome\": \"linkedin\",\n\t\t\"usuario\": \"Maykel Nekel\",\n\t\t\"link\": \"https://www.linkedin.com/in/maykelnekel/\",\n\t\t\"_id\": \"646d08f55bf3a7e17a196ed8\"\n\t}\n\t``` \n**Casos de falha:**\n- Status da falha\n- Body\n\t\n\t```json\n\t{\n\t\t\"error\": \"Mensagem de erro\"\n\t}\n\t``` ",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"nome\": \"linkedin\",\n\t\"usuario\": \"Maykel Nekel\",\n\t\"link\": \"https://www.linkedin.com/in/maykelnekel/\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "Token"
+      },
+      "metaSortKey": -1680826399053.7656,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_003fce34f4f046e2a7a3a4ff9b9c66ec",
+      "parentId": "wrk_e1bea2f5ac074b168c1cbdd2c1b9dd9f",
+      "modified": 1684786043040,
+      "created": 1684786043040,
+      "name": "Midias",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1676377458931.4375,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_bb0c6ca5ecba411d991ae29dd502f255",
+      "parentId": "fld_003fce34f4f046e2a7a3a4ff9b9c66ec",
+      "modified": 1684884492827,
+      "created": 1684786043045,
+      "url": "{{ _.baseUrl }}/midias",
+      "name": "/midias",
+      "description": "### Rota para listagem de todas as midias/redes sociais.\n\nRota **autenticada**, necessita do envio de um **Bearer Token** gerado no **login**.\n\nNão há necessidade de um body de envio.\n\n**Caso de sucesso:**\n- 200 SUCCES\n- Body:\n\t\n\t```json\n\t[\n\t\t{\n\t\t\t\"nome\": \"linkedin\",\n\t\t\t\"usuario\": \"Maykel Nekel\",\n\t\t\t\"link\": \"https://www.linkedin.com/in/maykelnekel/\",\n\t\t\t\"_id\": \"646d08f55bf3a7e17a196ed8\"\n\t\t}\n\t]\n\t``` \n**Casos de falha:**\n- Status da falha\n- Body\n\t\n\t```json\n\t{\n\t\t\"error\": \"Mensagem de erro\"\n\t}\n\t``` ",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "Token"
+      },
+      "metaSortKey": -1680530035148.711,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_04af7750737949db83b680fea34d00cc",
+      "parentId": "fld_003fce34f4f046e2a7a3a4ff9b9c66ec",
+      "modified": 1684884289722,
+      "created": 1684786043053,
+      "url": "{{ _.baseUrl }}/midias/:id_midia",
+      "name": "/midias/:id_midia",
+      "description": "### Rota para listagem de uma midia/rede social a partir do seu ID.\n\nRota **autenticada**, necessita do envio de um **Bearer Token** gerado no **login**.\n\nNão há necessidade de um body de envio.\n\nDeve ser enviado o **ID da midia** por **parâmetro de url**.\n\n**Caso de sucesso:**\n- 200 SUCCES\n- Body:\n\t\n\t```json\n\t{\n\t\t\"nome\": \"linkedin\",\n\t\t\"usuario\": \"Maykel Nekel\",\n\t\t\"link\": \"https://www.linkedin.com/in/maykelnekel/\",\n\t\t\"_id\": \"646d08f55bf3a7e17a196ed8\"\n\t}\n\t``` \n**Casos de falha:**\n- Status da falha\n- Body\n\t\n\t```json\n\t{\n\t\t\"error\": \"Mensagem de erro\"\n\t}\n\t``` ",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "Token"
+      },
+      "metaSortKey": -1680233671243.6562,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_376c8e8bf51e4b9c8771f0278b40d6cf",
+      "parentId": "fld_003fce34f4f046e2a7a3a4ff9b9c66ec",
+      "modified": 1684884295784,
+      "created": 1684786043051,
+      "url": "{{ _.baseUrl }}/midias/:id_midia",
+      "name": "/midias/:id_midia",
+      "description": "### Rota para atualização de uma midia/rede social a partir do seu ID.\n\nRota **autenticada**, necessita do envio de um **Bearer Token** gerado no **login**.\n\nDeve ser enviado pelo **body**, no formato **json**, os **campos opicionais**:\n- **nome**: string;\n- **usuario**: string;\n- **link**: string;\n\nDeve ser enviado o **ID da foto** por **parâmetro de url**.\n\n**Caso de sucesso:**\n- 200 SUCCES\n- Body:\n\t\n\t```json\n\t{\n\t\t\"nome\": \"linkedin\",\n\t\t\"usuario\": \"Maykel Nekel\",\n\t\t\"link\": \"https://www.linkedin.com/in/maykelnekel/\",\n\t\t\"_id\": \"646d08f55bf3a7e17a196ed8\"\n\t}\n\t``` \n**Casos de falha:**\n- Status da falha\n- Body\n\t\n\t```json\n\t{\n\t\t\"error\": \"Mensagem de erro\"\n\t}\n\t``` ",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"nome\": \"linkedin\",\n\t\"usuario\": \"Maykel Nekel\",\n\t\"link\": \"https://www.linkedin.com/in/maykelnekel/\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "Token"
+      },
+      "metaSortKey": -1677862760003.2188,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_bc1934e9f6b84643bc6aab2697d64a5a",
+      "parentId": "fld_003fce34f4f046e2a7a3a4ff9b9c66ec",
+      "modified": 1684884284781,
+      "created": 1684786043056,
+      "url": "{{ _.baseUrl }}/midias/:id_midia",
+      "name": "/midias/:id_midia",
+      "description": "### Rota para deleção de uma midia/rede social a partir do seu ID.\n\nRota **autenticada**, necessita do envio de um **Bearer Token** gerado no **login**.\n\nNão há necessidade de um body de envio.\n\nDeve ser enviado o **ID da midia** por **parâmetro de url**.\n\n**Caso de sucesso:**\n- 204 SUCCES\n- Body: vazio\n\n**Casos de falha:**\n- Status da falha\n- Body\n\t\n\t```json\n\t{\n\t\t\"error\": \"Mensagem de erro\"\n\t}\n\t``` ",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "Token"
+      },
+      "metaSortKey": -1677270032193.1094,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_392bc91e1a1e43b1b50d034b31d990a5",
+      "parentId": "fld_cee900c5bd1249a298b948952890ac33",
+      "modified": 1684886040198,
+      "created": 1684786269653,
+      "url": "{{ _.baseUrl }}/perfil",
+      "name": "/perfil",
+      "description": "### Rota para listagem do perfil de usuário.\n\nRota **autenticada**, necessita do envio de um **Bearer Token** gerado no **login**.\n\nNão há necessidade de um body de envio.\n\n**Caso de sucesso:**\n- 200 SUCCES\n- Body:\n\t\n\t```json\n\t{\n\t\t\"_id\": \"646bce6070a64914828285dc\",\n\t\t\"email\": \"maykelnekel@gmail.com\",\n\t\t\"telefone\": \"(41)99999-9999\",\n\t\t\"sobreMim\": \"algo sobre mim\",\n\t\t\"nome\": \"Maykel\",\n\t\t\"sobrenome\": \"Nekel\",\n\t\t\"fotos\": \"http://localhost:3000/fotos\",\n\t\t\"midias\": \"http://localhost:3000/midias\",\n\t\t\"categorias\": \"http://localhost:3000/categorias\"\n\t}\n\t``` \n**Casos de falha:**\n- Status da falha\n- Body\n\t\n\t```json\n\t{\n\t\t\"error\": \"Mensagem de erro\"\n\t}\n\t``` ",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "Token"
+      },
+      "metaSortKey": -1681419126863.875,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_cee900c5bd1249a298b948952890ac33",
+      "parentId": "wrk_e1bea2f5ac074b168c1cbdd2c1b9dd9f",
+      "modified": 1684786269649,
+      "created": 1684786269649,
+      "name": "Perfil",
+      "description": "",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1675407962834.2188,
+      "_type": "request_group"
+    },
+    {
+      "_id": "req_855ffa45aeab498a9d1be0af465e14ad",
+      "parentId": "fld_cee900c5bd1249a298b948952890ac33",
+      "modified": 1684886029505,
+      "created": 1684786269658,
+      "url": "{{ _.baseUrl }}/perfil",
+      "name": "/perfil",
+      "description": "### Rota para atualização do perfil de usuário.\n\nRota **autenticada**, necessita do envio de um **Bearer Token** gerado no **login**.\n\nDeve ser enviado pelo **body**, no formato **json**, os **campos opicionais**:\n- **email**: string;\n- **telefone**: string;\n- **senha**: string;\n- **sobreMim**: string;\n- **nome**: string;\n- **sobrenome**: string;\n\n**Caso de sucesso:**\n- 200 SUCCES\n- Body:\n\t\n\t```json\n\t{\n\t\t\"_id\": \"646bce6070a64914828285dc\",\n\t\t\"email\": \"maykelnekel@gmail.com\",\n\t\t\"telefone\": \"(41)99999-9999\",\n\t\t\"sobreMim\": \"algo sobre mim\",\n\t\t\"nome\": \"Maykel\",\n\t\t\"sobrenome\": \"Nekel\",\n\t\t\"fotos\": \"http://localhost:3000/fotos\",\n\t\t\"midias\": \"http://localhost:3000/midias\",\n\t\t\"categorias\": \"http://localhost:3000/categorias\"\n\t}\n\t``` \n**Casos de falha:**\n- Status da falha\n- Body\n\t\n\t```json\n\t{\n\t\t\"error\": \"Mensagem de erro\"\n\t}\n\t``` ",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"login\": \"maykel\",\n\t\"email\": \"maykelnekel@gmail.com\",\n\t\"telefone\": \"(41)99999-9999\",\n\t\"sobreMim\": \"algo sobre mim\",\n\t\"nome\": \"Maykel\",\n\t\"sobrenome\": \"Nekel\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "Token"
+      },
+      "metaSortKey": -1677862760003.2188,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_ad5a7091ad97109b11afbe1dc88b5a0b4404844a",
+      "parentId": "wrk_e1bea2f5ac074b168c1cbdd2c1b9dd9f",
+      "modified": 1684610247492,
+      "created": 1684610247492,
+      "name": "Base Environment",
+      "data": {},
+      "dataPropertyOrder": null,
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1684610247492,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_ad5a7091ad97109b11afbe1dc88b5a0b4404844a",
+      "parentId": "wrk_e1bea2f5ac074b168c1cbdd2c1b9dd9f",
+      "modified": 1684784968308,
+      "created": 1684610247494,
+      "name": "Default Jar",
+      "cookies": [
+        {
+          "key": "__cf_bm",
+          "value": ".6vSTVdwjIxV1PdFexNN6hx4V8C4QL.UG2sxmg2N1pc-1684784968-0-AdfcRk+CFEhks0EEA26ghgXKidLatCZG8SLTYJHoSSqNUwxzKCvaj9/Nk86jlYikbU1HYQzOFtRMzh6MIdyKJqk=",
+          "expires": "2023-05-22T20:19:28.000Z",
+          "domain": "onrender.com",
+          "path": "/",
+          "secure": true,
+          "httpOnly": true,
+          "extensions": [
+            "SameSite=None"
+          ],
+          "hostOnly": false,
+          "creation": "2023-05-20T19:19:12.483Z",
+          "lastAccessed": "2023-05-22T19:49:28.308Z",
+          "id": "06854657112032703"
+        },
+        {
+          "key": "_cfuvid",
+          "value": "WZooaCKVuktx1yA4vqcwRuLv.8Hg6UtBKHeH2_oVu1c-1684779185018-0-604800000",
+          "domain": "onrender.com",
+          "path": "/",
+          "secure": true,
+          "httpOnly": true,
+          "extensions": [
+            "SameSite=None"
+          ],
+          "hostOnly": false,
+          "creation": "2023-05-20T19:19:12.483Z",
+          "lastAccessed": "2023-05-22T18:13:05.233Z",
+          "id": "5352548523000207"
+        }
+      ],
+      "_type": "cookie_jar"
+    },
+    {
+      "_id": "spc_adb7864305614124b0d06dc34d6efb6a",
+      "parentId": "wrk_e1bea2f5ac074b168c1cbdd2c1b9dd9f",
+      "modified": 1684887252456,
+      "created": 1684610247486,
+      "fileName": "Portifolio API",
+      "contents": "",
+      "contentType": "yaml",
+      "_type": "api_spec"
+    },
+    {
+      "_id": "env_0cff5716f463482ab15e40ee2bf5c841",
+      "parentId": "env_ad5a7091ad97109b11afbe1dc88b5a0b4404844a",
+      "modified": 1684610315192,
+      "created": 1684610261717,
+      "name": "Production",
+      "data": {
+        "baseUrl": "https://portifolio-api-ndbf.onrender.com"
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "baseUrl"
+        ]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1684610261717,
+      "_type": "environment"
+    },
+    {
+      "_id": "env_72a07799a35b4bc9abf8b061040988f3",
+      "parentId": "env_ad5a7091ad97109b11afbe1dc88b5a0b4404844a",
+      "modified": 1684774983601,
+      "created": 1684610307802,
+      "name": "Development",
+      "data": {
+        "baseUrl": "http://localhost:3000"
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "baseUrl"
+        ]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1684610307802,
+      "_type": "environment"
+    }
+  ]
+}
